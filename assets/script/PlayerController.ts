@@ -68,7 +68,7 @@ export class PlayerController extends Component {
         // newPosition.add3f(x, y, z);
         tween(this.node)
             .to(0.25, { position: new Vec3(pos.x + x / 2, pos.y + (Math.SQRT2 - 1) / 2, pos.z + z / 2) })
-            .to(0.25, { position: new Vec3(pos.x + x, pos.y /* - (Math.SQRT2 - 1) */, pos.z) })
+            .to(0.25, { position: new Vec3(pos.x + x, pos.y /* - (Math.SQRT2 - 1) */, pos.z + z) })
             .call(() => {
                 input.on(Input.EventType.KEY_DOWN, this.onKeyDown, this);
             })

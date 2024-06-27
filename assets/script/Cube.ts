@@ -1,4 +1,4 @@
-import { _decorator, CCFloat, Component, director, EventKeyboard, game, Input, input, KeyCode, math, Node, Quat, tween, Vec2, Vec3 } from 'cc';
+import { _decorator, CCFloat, Component, director, EventKeyboard, game, Input, input, KeyCode, math, Node, quat, Quat, tween, Vec2, Vec3 } from 'cc';
 const { ccclass, property } = _decorator;
 
 @ccclass('Cube')
@@ -89,7 +89,7 @@ export class Cube extends Component {
         this.node.setRotation(ros);
     } */
     moveCube(x: number, y: number, z: number) {
-        /* const pos = this.node.position.clone();
+        const pos = this.node.position.clone();
         // newPosition.add3f(x, y, z);
         tween(this.node)
             .to(this.duration / 2, { position: new Vec3(pos.x + x / 2, pos.y + (Math.SQRT2 - 1) / 2, pos.z + z / 2) })
@@ -98,7 +98,7 @@ export class Cube extends Component {
                 // input.on(Input.EventType.KEY_DOWN, this.onKeyDown, this);
             })
             // .union()
-            .start(); */
+            .start();
     }
 }
 

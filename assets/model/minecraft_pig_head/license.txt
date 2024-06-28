@@ -1,0 +1,11 @@
+Model Information:
+* title:	Minecraft Pig Head
+* source:	https://sketchfab.com/3d-models/minecraft-pig-head-7853bf4167504b5a812258535efdbd88
+* author:	Alex_F (https://sketchfab.com/Alex_F)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Minecraft Pig Head" (https://sketchfab.com/3d-models/minecraft-pig-head-7853bf4167504b5a812258535efdbd88) by Alex_F (https://sketchfab.com/Alex_F) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

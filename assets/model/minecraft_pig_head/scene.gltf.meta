@@ -1,0 +1,159 @@
+{
+  "ver": "2.3.12",
+  "importer": "gltf",
+  "imported": true,
+  "uuid": "e34d9635-7f15-4705-9db3-562585bef6d3",
+  "files": [],
+  "subMetas": {
+    "99380": {
+      "importer": "gltf-material",
+      "uuid": "e34d9635-7f15-4705-9db3-562585bef6d3@99380",
+      "displayName": "",
+      "id": "99380",
+      "name": "Material.001.material",
+      "userData": {
+        "gltfIndex": 1
+      },
+      "ver": "1.0.14",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "c4e32": {
+      "importer": "gltf-mesh",
+      "uuid": "e34d9635-7f15-4705-9db3-562585bef6d3@c4e32",
+      "displayName": "",
+      "id": "c4e32",
+      "name": "Head_0.mesh",
+      "userData": {
+        "gltfIndex": 0,
+        "triangleCount": 12
+      },
+      "ver": "1.1.1",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "65e41": {
+      "importer": "gltf-mesh",
+      "uuid": "e34d9635-7f15-4705-9db3-562585bef6d3@65e41",
+      "displayName": "",
+      "id": "65e41",
+      "name": "Head_1.mesh",
+      "userData": {
+        "gltfIndex": 1,
+        "triangleCount": 12
+      },
+      "ver": "1.1.1",
+      "imported": true,
+      "files": [
+        ".bin",
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "e39f7": {
+      "importer": "texture",
+      "uuid": "e34d9635-7f15-4705-9db3-562585bef6d3@e39f7",
+      "displayName": "",
+      "id": "e39f7",
+      "name": "UnnamedTexture.texture",
+      "userData": {
+        "wrapModeS": "repeat",
+        "wrapModeT": "repeat",
+        "minfilter": "nearest",
+        "magfilter": "nearest",
+        "mipfilter": "none",
+        "anisotropy": 0,
+        "isUuid": false,
+        "imageUuidOrDatabaseUri": "db://assets/model/minecraft_pig_head/textures/Material_baseColor.png"
+      },
+      "ver": "1.0.22",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "b4e6b": {
+      "importer": "gltf-material",
+      "uuid": "e34d9635-7f15-4705-9db3-562585bef6d3@b4e6b",
+      "displayName": "",
+      "id": "b4e6b",
+      "name": "Material.material",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.14",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    },
+    "d1932": {
+      "importer": "gltf-scene",
+      "uuid": "e34d9635-7f15-4705-9db3-562585bef6d3@d1932",
+      "displayName": "",
+      "id": "d1932",
+      "name": "scene.prefab",
+      "userData": {
+        "gltfIndex": 0
+      },
+      "ver": "1.0.14",
+      "imported": true,
+      "files": [
+        ".json"
+      ],
+      "subMetas": {}
+    }
+  },
+  "userData": {
+    "imageMetas": [
+      {
+        "uri": "db://assets/model/minecraft_pig_head/textures/Material_baseColor.png"
+      }
+    ],
+    "redirect": "e34d9635-7f15-4705-9db3-562585bef6d3@d1932",
+    "lods": {
+      "enable": false,
+      "hasBuiltinLOD": false,
+      "options": [
+        {
+          "screenRatio": 0.25,
+          "faceCount": 1
+        },
+        {
+          "screenRatio": 0.125,
+          "faceCount": 0.25
+        },
+        {
+          "screenRatio": 0.01,
+          "faceCount": 0.1
+        }
+      ]
+    },
+    "assetFinder": {
+      "meshes": [
+        "e34d9635-7f15-4705-9db3-562585bef6d3@c4e32",
+        "e34d9635-7f15-4705-9db3-562585bef6d3@65e41"
+      ],
+      "skeletons": [],
+      "textures": [
+        "e34d9635-7f15-4705-9db3-562585bef6d3@e39f7"
+      ],
+      "materials": [
+        "e34d9635-7f15-4705-9db3-562585bef6d3@b4e6b",
+        "e34d9635-7f15-4705-9db3-562585bef6d3@99380"
+      ],
+      "scenes": [
+        "e34d9635-7f15-4705-9db3-562585bef6d3@d1932"
+      ]
+    }
+  }
+}

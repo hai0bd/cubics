@@ -1,4 +1,4 @@
-import { _decorator, Component, Vec3, Quat, input, Input, KeyCode, tween, EventKeyboard, math, director, Node, Vec2, CCFloat } from 'cc';
+import { _decorator, Component, Vec3, Quat, input, Input, KeyCode, tween, EventKeyboard, math, director, Node, Vec2, CCFloat, easing, EventTouch } from 'cc';
 const { ccclass, property } = _decorator;
 
 @ccclass('PlayerController')
@@ -8,11 +8,23 @@ export class PlayerController extends Component {
 
     pivotNode: Node;
     pos: Vec3;
-    direction: string;
+    isFliping: boolean = false;
+
+    lastTouchPos: Vec2;
 
     start() {
         input.on(Input.EventType.KEY_DOWN, this.onKeyDown, this);
+        input.on(Input.EventType.TOUCH_START, this.onTouchStart, this);
+        input.on(Input.EventType.TOUCH_END, this.onTouchEnd, this);
     }
+    onTouchStart(event: EventTouch){
+        this.lastTouchPos = event.getUILocation();
+    }
+    onTouchEnd(event: EventTouch){
+        const endTouch = event.getUILocation();
+        
+    }
+
     onKeyDown(event: EventKeyboard) {
         switch (event.keyCode) {
             case KeyCode.KEY_W:
@@ -22,62 +34,89 @@ export class PlayerController extends Component {
                 this.flipCube("backward");
                 break;
             case KeyCode.KEY_A:
-                this.flipCube("right");
+                this.flipCube("left");
                 break;
             case KeyCode.KEY_D:
-                this.flipCube("left");
+                this.flipCube("right");
                 break;
         }
     }
 
     flipCube(input: string) {
-        let posSet: Vec3;
+        if (this.isFliping) return;
+        let pivot: Vec3;
         let angle: Vec3;
         let direction: Vec3;
 
         switch (input) {
             case "foward":
+                pivot = new Vec3(0, -0.5, 0.5);
+                angle = new Vec3(90, 0, 0);
+                direction = new Vec3(0, 0, 1);
                 break;
             case "backward":
-                break;
-            case "right":
-                posSet = new Vec3(-0.5, -0.5, 0);
-                angle = new Vec3(0, 0, 90);
-                direction = new Vec3(1, 0, 0);
+                pivot = new Vec3(0, -0.5, -0.5);
+                angle = new Vec3(-90, 0, 0);
+                direction = new Vec3(0, 0, -1);
                 break;
             case "left":
-                posSet = new Vec3(0.5, -0.5, 0);
+                pivot = new Vec3(0.5, -0.5, 0);
                 angle = new Vec3(0, 0, -90);
+                direction = new Vec3(1, 0, 0);
                 break;
+            case "right":
+                pivot = new Vec3(-0.5, -0.5, 0);
+                angle = new Vec3(0, 0, 90);
+                direction = new Vec3(-1, 0, 0);
+                break;
+            default:
+                return;
         }
+        this.isFliping = true;
+        this.move(pivot, angle, direction);
     }
 
-    init(posSet: Vec3, angle: Vec3, direction) {
+    move(pivot: Vec3, angle: Vec3, direction) {
+        // set parent node property
         this.pos = this.node.getPosition();
         this.pivotNode = new Node("PivotNode");
-        this.pivotNode.setPosition(new Vec3(this.pos.x + 0.5, this.pos.y - 0.5, this.pos.z + posSet.z));
-        this.node.setPosition(new Vec3(-0.5, 0.5, 0));
+        this.pivotNode.setPosition(new Vec3(this.pos.x + pivot.x, this.pos.y + pivot.y, this.pos.z + pivot.z));
+        this.node.setPosition(new Vec3(-pivot.x, 0.5, -pivot.z));
 
+        //add parent node
         director.getScene().addChild(this.pivotNode);
         this.pivotNode.addChild(this.node);
 
         // this.move();
-        this.rotate(angle);
+        this.rotate(angle, direction);
     }
 
-    rotate(angle: Vec3) {
+    rotate(angle: Vec3, direction: Vec3) {
         tween(this.pivotNode)
-            .to(this.duration, { eulerAngles: new Vec3(0, 0, -90) }) // Xoay 90 độ trong 1 giây
+            .to(this.duration, { eulerAngles: angle }) // Xoay 90 độ trong 1 giây
             .call(() => {
+                // delete parent node
                 this.node.removeFromParent();
                 this.pivotNode.destroy();
-                this.node.position = new Vec3(this.pos.x + 1, this.pos.y, this.pos.z);
+
+                //reset cube
+                this.node.position = new Vec3(this.pos.x + direction.x, this.pos.y, this.pos.z + direction.z);
+
+                let currentRotation = this.node.getRotation();
+                let axis = new Vec3(angle.x / 90, angle.y / 90, angle.z / 90);
+
+                Quat.rotateAround(currentRotation, currentRotation, axis, Math.PI / 2);
+                this.node.setRotation(currentRotation);
+
                 director.getScene().addChild(this.node);
-                // this.node.rotation = new Quat(0, 0, 0);
+                this.isFliping = false;
+                // this.springyCube();
             })
             .start();
     }
-    /* update(){
 
-    } */
+    resetCube() {
+
+    }
+
 }

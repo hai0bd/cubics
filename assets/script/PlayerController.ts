@@ -1,8 +1,15 @@
-import { _decorator, Component, Vec3, Quat, input, Input, KeyCode, tween, EventKeyboard, math, director, Node, Vec2, CCFloat, easing, EventTouch } from 'cc';
+import { _decorator, Component, Vec3, Quat, input, Input, KeyCode, tween, EventKeyboard, math, director, Node, Vec2, CCFloat, easing, EventTouch, ITriggerEvent, BoxCollider, RigidBody } from 'cc';
+import { CameraFollow } from './CameraFollow';
 const { ccclass, property } = _decorator;
 
 @ccclass('PlayerController')
 export class PlayerController extends Component {
+    @property(CameraFollow)
+    mainCam: CameraFollow;
+
+    @property(RigidBody)
+    rb: RigidBody;
+
     @property(CCFloat)
     duration: number;
 
@@ -22,7 +29,15 @@ export class PlayerController extends Component {
     }
     onTouchEnd(event: EventTouch){
         const endTouch = event.getUILocation();
-        
+    }
+
+    update(deltaTime: number){
+        let velocity = new Vec3();
+        this.rb.getLinearVelocity(velocity);
+
+        if(velocity.y < -1){
+            this.rb.applyForce(new Vec3(0, -100, 0), Vec3.ZERO);
+        }
     }
 
     onKeyDown(event: EventKeyboard) {
@@ -74,6 +89,11 @@ export class PlayerController extends Component {
         }
         this.isFliping = true;
         this.move(pivot, angle, direction);
+        this.moveCam(direction);
+    }
+
+    moveCam(direction: Vec3){
+        this.mainCam.followTarget(direction);
     }
 
     move(pivot: Vec3, angle: Vec3, direction) {
@@ -101,6 +121,7 @@ export class PlayerController extends Component {
 
                 //reset cube
                 this.node.position = new Vec3(this.pos.x + direction.x, this.pos.y, this.pos.z + direction.z);
+                
 
                 let currentRotation = this.node.getRotation();
                 let axis = new Vec3(angle.x / 90, angle.y / 90, angle.z / 90);

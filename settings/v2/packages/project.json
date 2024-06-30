@@ -1,3 +1,13 @@
 {
-  "__version__": "1.0.6"
+  "__version__": "1.0.6",
+  "layer": [
+    {
+      "name": "Food",
+      "value": 1
+    },
+    {
+      "name": "Destination",
+      "value": 2
+    }
+  ]
 }

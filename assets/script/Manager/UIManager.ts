@@ -9,6 +9,12 @@ export class UIManager extends Component {
     @property(HeathBar)
     heathBar: HeathBar;
 
+    @property(Node)
+    victoryPopUp: Node;
+
+    @property(Node)
+    losePopUp: Node;
+
     public static get instance(): UIManager {
         if (!this._instance) {
             this._instance = new UIManager;
@@ -24,8 +30,15 @@ export class UIManager extends Component {
         }
     }
 
-    healCube(){
+    healCube() {
         this.heathBar.healCube();
+    }
+
+    victory() {
+        this.victoryPopUp.active = true;
+    }
+    lose() {
+        this.losePopUp.active = true;
     }
 }
 

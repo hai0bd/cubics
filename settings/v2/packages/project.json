@@ -8,6 +8,10 @@
     {
       "name": "Destination",
       "value": 2
+    },
+    {
+      "name": "DeathRange",
+      "value": 4
     }
   ]
 }

@@ -1,19 +1,20 @@
-import { _decorator, BoxCollider, Collider, Component, ITriggerEvent, Node } from 'cc';
+import { _decorator, BoxCollider, Collider, Component, instantiate, ITriggerEvent, Node, Prefab } from 'cc';
 import { Layer } from '../Enum';
 import { UIManager } from './UIManager';
+import { MapControl } from '../MapControl';
 const { ccclass, property } = _decorator;
 
 @ccclass('GameManager')
 export class GameManager extends Component {
     private static _instance: GameManager;
-    @property(BoxCollider)
-    cube: BoxCollider;
 
-    @property(BoxCollider)
-    finishPoint: BoxCollider;
+    @property(MapControl)
+    map: MapControl;
 
-    @property(Node)
-    victoryPopUp: Node;
+    @property(Prefab)
+    levelPrefab: Prefab[] = [];
+
+    levelIndex: number = 0;
 
     public static get instance(): GameManager {
         if (!this._instance) {
@@ -30,25 +31,18 @@ export class GameManager extends Component {
         }
     }
 
-    start() {
-        this.cube.on('onTriggerEnter', this.onTriggerEnter, this);
+    victory() {
+        UIManager.instance.victory();
+        this.nextLevel();
     }
-
-    onDestination(){
-        this.finishPoint.enabled = true;
+    lose() {
+        UIManager.instance.lose();
     }
-
-    onTriggerEnter(event: ITriggerEvent){
-        console.log("isTrigger");
-        const other = event.otherCollider;
-
-        if(other.node.layer == Layer.Food_Layer){
-            UIManager.instance.healCube();
-            other.node.destroy();
-        }
-        else if(other.node.layer == Layer.Destination_Layer){
-            this.victoryPopUp.active = true;
-        }
+    nextLevel() {
+        this.instantiateLevel();
+    }
+    instantiateLevel(){
+        const level = instantiate(this.levelPrefab[this.levelIndex]);
     }
 }
 

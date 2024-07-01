@@ -15,11 +15,11 @@ export class HeathBar extends Component {
 
     currentIndex = 0;
 
-    healCube(){
+    healCube() {
         this.heartStatus[this.currentIndex].spriteFrame = this.heartOn;
         this.currentIndex++;
-        if(this.currentIndex == this.heartStatus.length){
-            GameManager.instance.onDestination();
+        if (this.currentIndex == this.heartStatus.length) {
+            GameManager.instance.map.onDestination();
         }
     }
 }

@@ -24,18 +24,18 @@ export class PlayerController extends Component {
         input.on(Input.EventType.TOUCH_START, this.onTouchStart, this);
         input.on(Input.EventType.TOUCH_END, this.onTouchEnd, this);
     }
-    onTouchStart(event: EventTouch){
+    onTouchStart(event: EventTouch) {
         this.lastTouchPos = event.getUILocation();
     }
-    onTouchEnd(event: EventTouch){
+    onTouchEnd(event: EventTouch) {
         const endTouch = event.getUILocation();
     }
 
-    update(deltaTime: number){
+    update(deltaTime: number) {
         let velocity = new Vec3();
         this.rb.getLinearVelocity(velocity);
 
-        if(velocity.y < -1){
+        if (velocity.y < -1) {
             this.rb.applyForce(new Vec3(0, -100, 0), Vec3.ZERO);
         }
     }
@@ -65,24 +65,24 @@ export class PlayerController extends Component {
 
         switch (input) {
             case "foward":
-                pivot = new Vec3(0, -0.5, 0.5);
-                angle = new Vec3(90, 0, 0);
-                direction = new Vec3(0, 0, 1);
-                break;
-            case "backward":
                 pivot = new Vec3(0, -0.5, -0.5);
                 angle = new Vec3(-90, 0, 0);
                 direction = new Vec3(0, 0, -1);
                 break;
-            case "left":
-                pivot = new Vec3(0.5, -0.5, 0);
-                angle = new Vec3(0, 0, -90);
-                direction = new Vec3(1, 0, 0);
+            case "backward":
+                pivot = new Vec3(0, -0.5, 0.5);
+                angle = new Vec3(90, 0, 0);
+                direction = new Vec3(0, 0, 1);
                 break;
-            case "right":
+            case "left":
                 pivot = new Vec3(-0.5, -0.5, 0);
                 angle = new Vec3(0, 0, 90);
                 direction = new Vec3(-1, 0, 0);
+                break;
+            case "right":
+                pivot = new Vec3(0.5, -0.5, 0);
+                angle = new Vec3(0, 0, -90);
+                direction = new Vec3(1, 0, 0);
                 break;
             default:
                 return;
@@ -92,7 +92,7 @@ export class PlayerController extends Component {
         this.moveCam(direction);
     }
 
-    moveCam(direction: Vec3){
+    moveCam(direction: Vec3) {
         this.mainCam.followTarget(direction);
     }
 
@@ -121,7 +121,7 @@ export class PlayerController extends Component {
 
                 //reset cube
                 this.node.position = new Vec3(this.pos.x + direction.x, this.pos.y, this.pos.z + direction.z);
-                
+
 
                 let currentRotation = this.node.getRotation();
                 let axis = new Vec3(angle.x / 90, angle.y / 90, angle.z / 90);

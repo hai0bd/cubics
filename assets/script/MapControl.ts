@@ -25,7 +25,7 @@ export class MapControl extends Component {
         console.log("isTrigger: " + other.node.layer);
 
         if (other.node.layer == Layer.Food_Layer) {
-            UIManager.instance.healCube();
+            // UIManager.instance.healCube();
             other.node.destroy();
         }
         else if (other.node.layer == Layer.Destination_Layer) {

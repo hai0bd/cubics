@@ -11,8 +11,8 @@ export class CameraFollow extends Component {
         pos.add(direction);
 
         tween(this.node)
-        .to(this.duration, {position: pos}, {easing: 'sineOut'})
-        .start();
+            .to(this.duration, { position: pos }, { easing: 'sineOut' })
+            .start();
     }
 }
 

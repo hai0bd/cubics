@@ -1,0 +1,11 @@
+Model Information:
+* title:	3December2018 Day17 - Snowflake
+* source:	https://sketchfab.com/3d-models/3december2018-day17-snowflake-9a454a20328746919be54097e58af9c4
+* author:	Fabian Ernst (https://sketchfab.com/fernst)
+
+Model License:
+* license type:	CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+* requirements:	Author must be credited. No commercial use.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "3December2018 Day17 - Snowflake" (https://sketchfab.com/3d-models/3december2018-day17-snowflake-9a454a20328746919be54097e58af9c4) by Fabian Ernst (https://sketchfab.com/fernst) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)

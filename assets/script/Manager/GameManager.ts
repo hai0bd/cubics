@@ -1,4 +1,4 @@
-import { _decorator, BoxCollider, Collider, Component, instantiate, ITriggerEvent, Node, Prefab } from 'cc';
+import { _decorator, BoxCollider, Collider, Component, Input, input, instantiate, ITriggerEvent, Node, Prefab } from 'cc';
 import { Layer } from '../Enum';
 import { UIManager } from './UIManager';
 import { MapControl } from '../MapControl';

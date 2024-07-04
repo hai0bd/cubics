@@ -25,7 +25,7 @@ export class ItemFloating extends Component {
                 tween()
                     .by(this.floatDuration, { position: new Vec3(0, this.floatAmplitude, 0) }, { easing: 'sineInOut' })
                     .by(this.floatDuration, { position: new Vec3(0, -this.floatAmplitude, 0) }, { easing: 'sineInOut' })
-                )
+            )
             .start();
         // Tạo hiệu ứng xoay vòng tròn
         tween(this.node)

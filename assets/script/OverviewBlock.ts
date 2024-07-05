@@ -13,11 +13,11 @@ export class OverviewBlock extends Component {
     }
 
     onCollisionEnter(event: ICollisionEvent) {
-        game.emit('OverviewOn');
+        game.emit('OverviewOn'); // bắn sự kiện để camera di chuyển overview
     }
 
     onCollisionExit(event: ICollisionEvent) {
-        game.emit('OverviewOff');
+        game.emit('OverviewOff'); // bắn sự kiện để camera di chuyển về trạng thái bình thường
     }
 }
 

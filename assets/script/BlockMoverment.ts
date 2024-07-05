@@ -21,17 +21,21 @@ export class BlockMoverment extends Component {
     isMoving: boolean = false;
 
     start() {
-        this.newPos = this.node.getPosition();
+        this.newPos = this.node.getPosition(); // lưu lại vị trí ban đầu của block
+
+        // nếu di chuyển lên và xuống thì:
         if (!this.isOneWay) {
             this.moveRepeatNode(this.distancePositon);
             return;
         }
+
+        // nếu block chỉ di chuyển lên hoặc xuống
         this.collider.on('onCollisionEnter', this.onCollisionEnter, this);
         this.collider.on('onCollisionExit', this.onCollisionExit, this);
     }
 
     onCollisionEnter(event: ICollisionEvent) {
-        game.emit('offInput');
+        game.emit('offInput'); // khi lên block thì không cho nhân vật di chuyển
         if (!this.isMoving) this.moveNode(this.distancePositon);
     }
 
@@ -47,11 +51,12 @@ export class BlockMoverment extends Component {
             .call(() => {
                 this.scheduleOnce(() => {
                     this.isMoving = false;
-                    game.emit('onInput');
+                    game.emit('onInput'); //cho nhân vật di chuyển
                 }, 0.1);
             })
             .start();
     }
+
     moveRepeatNode(newY: number) {
         tween(this.node)
             .to(this.duration, { position: new Vec3(this.newPos.x, this.newPos.y + newY, this.newPos.z) })

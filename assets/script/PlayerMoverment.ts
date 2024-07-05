@@ -1,6 +1,4 @@
-import { _decorator, Camera, CCFloat, Component, director, game, geometry, Node, PhysicsSystem, Quat, RigidBody, tween, Vec3 } from 'cc';
-import { CameraFollow } from './CameraFollow';
-import { Layer } from './Enum';
+import { _decorator, CCFloat, Component, director, game, geometry, Node, PhysicsSystem, Quat, RigidBody, tween, Vec3 } from 'cc';
 const { ccclass, property } = _decorator;
 
 @ccclass('PlayerMoverment')
@@ -15,14 +13,14 @@ export class PlayerMoverment extends Component {
     pivotNode: Node;
     pos: Vec3;
 
-    checkDistance(deltaTime: number) {
+    /* checkDistance(deltaTime: number) {
         let velocity = new Vec3();
         this.rb.getLinearVelocity(velocity);
 
         if (velocity.y < -1) {
             this.rb.applyForce(new Vec3(0, -100, 0), Vec3.ZERO);
         }
-    }
+    } */
 
     flipCube(input: string) {
         if (this.isFliping) return;
@@ -54,26 +52,24 @@ export class PlayerMoverment extends Component {
             default:
                 return;
         }
-        if (this.checkRaycast(direction)) return;
+        if (this.checkRaycast(direction)) return; // kiểm tra trước mặt có vật cản không
         this.isFliping = true;
         this.move(pivot, angle, direction);
-        game.emit('CubeMove', direction);
+        game.emit('CubeMove', direction); //bắn sự kiện để camera đi theo
     }
 
     checkRaycast(direction: Vec3): boolean {
         const startPos = this.node.getPosition();
-        // const endPos = new Vec3(startPos.x + direction.x + 0.5, startPos.y + direction.y + 0.5, startPos.z + direction.z + 0.5);
-
         let ray = new geometry.Ray(startPos.x, startPos.y, startPos.z, direction.x, direction.y, direction.z);
+
         if (PhysicsSystem.instance.raycast(ray, 0xffffffff, 1, true)) {
             let results = PhysicsSystem.instance.raycastResults;
 
             for (let i = 0; i < results.length; i++) {
                 const collider = results[i].collider;
-                if (collider.node.layer != Layer.Food_Layer) return true;
+                if (!collider.isTrigger) return true;
             }
         }
-
         return false;
     }
 

@@ -14,8 +14,9 @@ export class Glass extends Component {
     }
 
     onCollisionExit(event: ICollisionEvent) {
+        // khi đi qua block thì độ bền sẽ trừ đi 1
         this.timesLimit--;
-        if (this.timesLimit < 0) {
+        if (this.timesLimit < 0) { // khi độ bền < 0 thì destroy
             this.node.destroy();
         }
     }

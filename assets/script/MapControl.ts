@@ -18,6 +18,9 @@ export class MapControl extends Component {
     start() {
         this.cube.on('onTriggerEnter', this.onTriggerEnter, this);
     }
+    onDisable() {
+        this.cube.off('onTriggerEnter');
+    }
 
     // bật điểm đích khi đủ điều kiện
     onDestination() {

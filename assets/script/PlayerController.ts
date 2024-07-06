@@ -15,6 +15,11 @@ export class PlayerController extends Component {
         game.on('offInput', this.offInput, this)
         this.onInput();
     }
+    onDisable() {
+        game.off('onInput')
+        game.off('offInput')
+    }
+
     onInput() {
         input.on(Input.EventType.KEY_DOWN, this.onKeyDown, this);
         input.on(Input.EventType.KEY_PRESSING, this.onKeyDown, this);

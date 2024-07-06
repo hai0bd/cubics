@@ -34,6 +34,11 @@ export class BlockMoverment extends Component {
         this.collider.on('onCollisionExit', this.onCollisionExit, this);
     }
 
+    onDisabale() {
+        this.collider.off('onCollisionEnter');
+        this.collider.off('onCollisionExit');
+    }
+
     onCollisionEnter(event: ICollisionEvent) {
         game.emit('offInput'); // khi lên block thì không cho nhân vật di chuyển
         if (!this.isMoving) this.moveNode(this.distancePositon);

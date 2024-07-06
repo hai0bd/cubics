@@ -11,6 +11,10 @@ export class OverviewBlock extends Component {
         this.collider.on('onCollisionEnter', this.onCollisionEnter, this);
         this.collider.on('onCollisionExit', this.onCollisionExit, this);
     }
+    onDisable() {
+        this.collider.off('onCollisionEnter');
+        this.collider.off('onCollisionExit');
+    }
 
     onCollisionEnter(event: ICollisionEvent) {
         game.emit('OverviewOn'); // bắn sự kiện để camera di chuyển overview

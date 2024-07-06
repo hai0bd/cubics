@@ -12,6 +12,9 @@ export class Glass extends Component {
     start() {
         this.collider.on('onCollisionExit', this.onCollisionExit, this)
     }
+    onDisable() {
+        this.collider.off('onCollisionExit')
+    }
 
     onCollisionExit(event: ICollisionEvent) {
         // khi đi qua block thì độ bền sẽ trừ đi 1

@@ -14,6 +14,12 @@ export class CameraFollow extends Component {
         game.on('CubeMove', this.followTarget, this);
         game.on('OnDestination', this.followDestination, this);
     }
+    onDisable() {
+        game.off('Overviewoff');
+        game.off('OverviewOff');
+        game.off('CubeMove');
+        game.off('OnDestination');
+    }
 
     followTarget(direction: Vec3) {
         const pos = this.node.getPosition();

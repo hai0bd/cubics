@@ -1,4 +1,4 @@
-import { _decorator, BoxCollider, CCFloat, Component, game, ICollisionEvent, MeshCollider, MeshRenderer, Node, tween, Vec3 } from 'cc';
+import { _decorator, CCFloat, Component, game, MeshRenderer, Node, tween, Vec3 } from 'cc';
 const { ccclass, property } = _decorator;
 
 @ccclass('StepBlock')
@@ -17,6 +17,9 @@ export class StepBlock extends Component {
 
     start() {
         game.on("CubeMove", this.checkDistance, this);
+    }
+    onDisable() {
+        game.off("CubeMove");
     }
 
     checkDistance() {

@@ -2,5 +2,72 @@
   "__version__": "1.3.7",
   "log": {
     "level": 4
+  },
+  "common": {
+    "polyfills": {
+      "asyncFunctions": true
+    },
+    "scenes": [
+      {
+        "url": "db://assets/scene/main-scene.scene",
+        "uuid": "9aedf9e2-a12e-45eb-ab73-34e9dba84e95"
+      }
+    ],
+    "buildPath": "project://build",
+    "outputName": "android",
+    "mainBundleCompressionType": "merge_dep",
+    "platform": "android",
+    "debug": false,
+    "useSplashScreen": false,
+    "name": "cubics"
+  },
+  "BuildTaskManager": {
+    "taskMap": {
+      "1720499692901": {
+        "type": "build",
+        "id": "1720499692901",
+        "progress": 1,
+        "state": "success",
+        "stage": "build",
+        "message": "9-7-2024 11:35:23 build success in 30 s!",
+        "options": {
+          "name": "cubics",
+          "server": "",
+          "platform": "android",
+          "buildPath": "project://build",
+          "debug": false,
+          "md5Cache": false,
+          "skipCompressTexture": false,
+          "sourceMaps": false,
+          "polyfills": {
+            "asyncFunctions": false
+          },
+          "experimentalEraseModules": false,
+          "startSceneAssetBundle": false,
+          "bundleConfigs": [],
+          "useBuiltinServer": false,
+          "mainBundleIsRemote": false,
+          "mainBundleCompressionType": "merge_dep",
+          "useSplashScreen": false,
+          "bundleCommonChunk": false,
+          "packAutoAtlas": true,
+          "startScene": "9aedf9e2-a12e-45eb-ab73-34e9dba84e95",
+          "outputName": "android",
+          "taskName": "android",
+          "scenes": [
+            {
+              "url": "db://assets/scene/main-scene.scene",
+              "uuid": "9aedf9e2-a12e-45eb-ab73-34e9dba84e95"
+            }
+          ],
+          "packages": {},
+          "__version__": "1.3.7",
+          "buildMode": "normal",
+          "logDest": "project://temp/builder/log/android9-7-2024 11-34.log"
+        },
+        "time": "9-7-2024 11:34:52",
+        "dirty": false
+      }
+    }
   }
 }

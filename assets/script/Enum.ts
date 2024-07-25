@@ -9,3 +9,12 @@ export enum Block_Type {
     Pull = 2,
     PushPull = 3
 }
+
+export enum Game_Emit {
+    CubeMove = "CubeMove",
+    OverviewOn = "OverviewOn",
+    OverviewOff = "OverviewOff",
+    OnDestination = "OnDestination",
+    onInput = "onInput",
+    offInput = "offInput"
+}

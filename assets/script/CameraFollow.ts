@@ -1,4 +1,5 @@
-import { _decorator, CCFloat, Component, easing, game, Node, Quat, tween, Vec3 } from 'cc';
+import { _decorator, CCFloat, Component, easing, Game, game, Node, Quat, tween, Vec3 } from 'cc';
+import { Game_Emit } from './Enum';
 const { ccclass, property } = _decorator;
 
 @ccclass('CameraFollow')
@@ -15,7 +16,7 @@ export class CameraFollow extends Component {
         game.on('OnDestination', this.followDestination, this);
     }
     onDisable() {
-        game.off('Overviewoff');
+        game.off('OverviewOff');
         game.off('OverviewOff');
         game.off('CubeMove');
         game.off('OnDestination');
@@ -27,13 +28,14 @@ export class CameraFollow extends Component {
 
         tween(this.node)
             .to(this.duration, { position: pos }, { easing: 'sineOut' })
-            .call(() => { this.cachePos = this.node.getPosition() })
+            .call(() => {
+                this.cachePos = this.node.getPosition();
+                // game.emit(Game_Emit.onInput);
+            })
             .start();
     }
 
     followDestination() {
-        game.emit('offInput');
-
         const pos = new Vec3(-14, 7, 30);
         tween(this.node)
             .to(this.duration, { position: pos }, { easing: 'sineOut' })
@@ -41,19 +43,20 @@ export class CameraFollow extends Component {
                 this.scheduleOnce(() => {
                     tween(this.node)
                         .to(this.duration, { position: this.cachePos }, { easing: 'sineOut' })
-                        .call(() => { game.emit('onInput'); })
+                        .call(() => { game.emit(Game_Emit.onInput); })
                         .start();
                 }, 2)
             })
             .start();
     }
-    
+
     overviewOn() {
         const pos = new Vec3(0, 50, 10);
         const rot = new Vec3(-90, 0, 0);
 
         tween(this.node)
             .to(this.duration, { position: pos }, { easing: 'sineOut' })
+            .call(() => { game.emit(Game_Emit.onInput) })
             .start();
 
         tween(this.node)
@@ -67,6 +70,7 @@ export class CameraFollow extends Component {
 
         tween(this.node)
             .to(this.duration, { eulerAngles: new Vec3(-35, 0, 0) }, { easing: 'sineOut' })
+            .call(() => { Game_Emit.onInput })
             .start();
 
     }

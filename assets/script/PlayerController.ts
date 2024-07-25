@@ -1,6 +1,7 @@
 import { _decorator, Component, Vec3, Quat, input, Input, KeyCode, tween, EventKeyboard, math, director, Node, Vec2, CCFloat, easing, EventTouch, ITriggerEvent, BoxCollider, RigidBody, game } from 'cc';
 import { CameraFollow } from './CameraFollow';
 import { PlayerMoverment } from './PlayerMoverment';
+import { Game_Emit } from './Enum';
 const { ccclass, property } = _decorator;
 
 @ccclass('PlayerController')
@@ -11,13 +12,13 @@ export class PlayerController extends Component {
     lastTouchPos: Vec2;
 
     start() {
-        game.on('onInput', this.onInput, this)
-        game.on('offInput', this.offInput, this)
+        game.on(Game_Emit.onInput, this.onInput, this);
+        game.on(Game_Emit.offInput, this.offInput, this);
         this.onInput();
     }
     onDisable() {
-        game.off('onInput')
-        game.off('offInput')
+        game.off(Game_Emit.onInput);
+        game.off(Game_Emit.offInput);
     }
 
     onInput() {
@@ -29,6 +30,7 @@ export class PlayerController extends Component {
 
     offInput() {
         input.off(Input.EventType.KEY_DOWN);
+        input.off(Input.EventType.KEY_PRESSING);
         input.off(Input.EventType.TOUCH_START);
         input.off(Input.EventType.TOUCH_END);
     }
@@ -38,6 +40,25 @@ export class PlayerController extends Component {
     }
     onTouchEnd(event: EventTouch) {
         const endTouch = event.getUILocation();
+        const direction = new Vec2(endTouch.x - this.lastTouchPos.x, endTouch.y - this.lastTouchPos.y);
+        console.log("direction: ", direction);
+
+        if (Math.abs(direction.x) > Math.abs(direction.y)) {
+            if (direction.x < 0) {
+                this.playerMoverment.flipCube("left");
+            }
+            else {
+                this.playerMoverment.flipCube("right");
+            }
+        }
+        else if (Math.abs(direction.x) - Math.abs(direction.y) != 0) {
+            if (direction.y < 0) {
+                this.playerMoverment.flipCube("backward");
+            }
+            else {
+                this.playerMoverment.flipCube("foward");
+            }
+        }
     }
 
     onKeyDown(event: EventKeyboard) {

@@ -1,4 +1,5 @@
-import { _decorator, CCFloat, Component, director, game, geometry, Node, PhysicsSystem, Quat, RigidBody, tween, Vec3 } from 'cc';
+import { _decorator, CCFloat, Component, director, Game, game, geometry, Node, PhysicsSystem, Quat, RigidBody, tween, Vec3 } from 'cc';
+import { Game_Emit } from './Enum';
 const { ccclass, property } = _decorator;
 
 @ccclass('PlayerMoverment')
@@ -12,15 +13,6 @@ export class PlayerMoverment extends Component {
     isFliping: boolean = false;
     pivotNode: Node;
     pos: Vec3;
-
-    /* checkDistance(deltaTime: number) {
-        let velocity = new Vec3();
-        this.rb.getLinearVelocity(velocity);
-
-        if (velocity.y < -1) {
-            this.rb.applyForce(new Vec3(0, -100, 0), Vec3.ZERO);
-        }
-    } */
 
     flipCube(input: string) {
         if (this.isFliping) return;
@@ -55,7 +47,7 @@ export class PlayerMoverment extends Component {
         if (this.checkRaycast(direction)) return; // kiểm tra trước mặt có vật cản không
         this.isFliping = true;
         this.move(pivot, angle, direction);
-        game.emit('CubeMove', direction); //bắn sự kiện để camera đi theo
+        game.emit(Game_Emit.CubeMove, direction); //bắn sự kiện để camera đi theo
     }
 
     checkRaycast(direction: Vec3): boolean {

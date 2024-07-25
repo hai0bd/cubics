@@ -1,5 +1,5 @@
-import { _decorator, BoxCollider, CCInteger, Component, game, ITriggerEvent } from 'cc';
-import { Layer } from './Enum';
+import { _decorator, BoxCollider, CCInteger, CCString, Component, game, ITriggerEvent } from 'cc';
+import { Game_Emit, Layer } from './Enum';
 import { GameManager } from './Manager/GameManager';
 import { UIManager } from './Manager/UIManager';
 const { ccclass, property } = _decorator;
@@ -24,10 +24,11 @@ export class MapControl extends Component {
 
     // bật điểm đích khi đủ điều kiện
     onDestination() {
-        game.emit('OnDestination');
+        game.emit(Game_Emit.OnDestination);
+        game.emit(Game_Emit.offInput);
         this.scheduleOnce(() => {
             this.finishPoint.node.active = true;
-        }, 1.5);
+        }, 0.5);
     }
 
     onTriggerEnter(event: ITriggerEvent) {
@@ -46,5 +47,4 @@ export class MapControl extends Component {
         }
     }
 }
-
 

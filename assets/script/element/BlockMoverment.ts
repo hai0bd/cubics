@@ -1,5 +1,5 @@
 import { _decorator, BoxCollider, CCFloat, CCInteger, Component, Enum, game, ICollisionEvent, Input, input, Node, tween, Vec3 } from 'cc';
-import { Block_Type } from './Enum';
+import { Block_Type } from '../Enum';
 const { ccclass, property } = _decorator;
 Enum(Block_Type);
 
